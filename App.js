@@ -5,21 +5,33 @@
 //textinput -> input component
 //button -> button component
 
+import { useState } from "react";
 import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 
 export default function App() {
+
+  const [value, setValue] = useState('')
+
+  function handleOnChangeText(getEnteredText){
+    setValue(getEnteredText)
+  }
+
+  function handleOnPressButton(){
+    console.log("Inserted Text : ", value)
+  }
+
   return(
     <View style={{
       padding: 60
     }}>
       {/* to render input along with button */}
       <View style={styles.inputContainer}>
-        <TextInput style={styles.input} placeholder="Add Your Note Here"></TextInput>
-        <Button color={'#000'} title="Add Note"/>
+        <TextInput onChangeText={handleOnChangeText} style={styles.input} placeholder="Add Your Note Here"></TextInput>
+        <Button onPress={handleOnPressButton} color={'#000'} title="Add Note"/>
       </View>
       {/* to render input along with button */}
       {/* to tender all notes that we created */}
-      <View>
+      <View style={styles.listContainer}>
         <Text>Show List Here</Text>
       </View>
       {/* to render all notes that we created */}
@@ -37,6 +49,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#ddd',
     flex: 1
+  },
+  listContainer : {
+    paddingTop: 30
   }
-
 })
