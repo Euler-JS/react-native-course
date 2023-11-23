@@ -5,7 +5,7 @@
 //textinput -> input component
 //button -> button component
 
-import { Button, StyleSheet, TextInput, View } from "react-native";
+import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 
 export default function App() {
   return(
@@ -20,7 +20,7 @@ export default function App() {
       {/* to render input along with button */}
       {/* to tender all notes that we created */}
       <View>
-
+        <Text>Show List Here</Text>
       </View>
       {/* to render all notes that we created */}
     </View>
@@ -29,7 +29,9 @@ export default function App() {
 
 const styles = StyleSheet.create({
   inputContainer : {
-    flexDirection: 'row'
+    flexDirection: 'row',
+    paddingBottom: 30,
+    borderBottomWidth: 1
   },
   input : {
     borderWidth: 1,
