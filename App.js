@@ -13,9 +13,9 @@ export default function App() {
       padding: 60
     }}>
       {/* to render input along with button */}
-      <View>
-        <TextInput placeholder="Add Your Note Here"></TextInput>
-        <Button title="Add Note"/>
+      <View style={styles.inputContainer}>
+        <TextInput style={styles.input} placeholder="Add Your Note Here"></TextInput>
+        <Button color={'#000'} title="Add Note"/>
       </View>
       {/* to render input along with button */}
       {/* to tender all notes that we created */}
@@ -28,5 +28,13 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
+  inputContainer : {
+    flexDirection: 'row'
+  },
+  input : {
+    borderWidth: 1,
+    borderColor: '#ddd',
+    flex: 1
+  }
 
 })
