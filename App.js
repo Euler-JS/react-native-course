@@ -2,39 +2,31 @@
 
 //view -> container that will wrap multiple components
 //text -> to showcase any text
+//textinput -> input component
+//button -> button component
 
-import { StyleSheet, Text } from "react-native";
-import { View } from "react-native";
+import { Button, StyleSheet, TextInput, View } from "react-native";
 
 export default function App() {
   return(
-    <View style={styles.container}>
-        <View style={styles.nestedContainer}>
-          <Text>Nested Test</Text>
-        </View>
-        <Text style={{
-          fontSize: 20,
-          margin: 30,
-          color: 'white'
-        }}> Hello React</Text>
+    <View style={{
+      padding: 60
+    }}>
+      {/* to render input along with button */}
+      <View>
+        <TextInput placeholder="Add Your Note Here"></TextInput>
+        <Button title="Add Note"/>
+      </View>
+      {/* to render input along with button */}
+      {/* to tender all notes that we created */}
+      <View>
+
+      </View>
+      {/* to render all notes that we created */}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    display: 'flex',
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'red'
-  },
-  nestedContainer: {
-    display: 'flex',
-    width: 200,
-    height: 200,
-    backgroundColor: 'green',
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
+
 })
