@@ -15,6 +15,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import ApiCall from "./components/apicall";
 
 
 export default function App() {
@@ -77,6 +78,11 @@ export default function App() {
           />
       </View>
       {/* to render all notes that we created */}
+
+      {/* Our Api component */}
+      <View style={styles.apiContainer}>
+        <ApiCall/>
+      </View>
     </View>
   );
 }
@@ -97,7 +103,7 @@ const styles = StyleSheet.create({
   },
   listContainer: {
     paddingTop: 30,
-    flex: 3
+    flex: 1
   },
   listItem: {
     borderRadius: 1,
@@ -108,4 +114,7 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 20,
   },
+  apiContainer : {
+    flex: 2
+  }
 });
