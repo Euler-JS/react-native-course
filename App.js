@@ -27,11 +27,15 @@ export default function App() {
 
   function handleOnPressButton() {
     setListOfNotes((currentNotes) => [...currentNotes, value]);
+    setValue('');
     console.log(listOfNotes);
   }
 
-  function handleRemoveItem() {
-    console.log('Item pressed Here');
+  function handleRemoveItem(getCurrentIndex) {
+    console.log('Item pressed Here ', getCurrentIndex);
+    let copyListOfNotes = [...listOfNotes]
+    copyListOfNotes = copyListOfNotes.filter((_, index) => getCurrentIndex !== index)
+    setListOfNotes(copyListOfNotes)
   }
 
   return (
@@ -48,6 +52,7 @@ export default function App() {
           onChangeText={handleOnChangeText}
           style={styles.input}
           placeholder="Add Your Note Here"
+          value={value}
         ></TextInput>
         <Button onPress={handleOnPressButton} color={"#000"} title="Add Note" />
       </View>
@@ -64,7 +69,7 @@ export default function App() {
         <FlatList 
           data={listOfNotes}
           renderItem={(itemData)=> (
-            <Pressable onPress={handleRemoveItem}> 
+            <Pressable onPress={()=>handleRemoveItem(itemData.index)}> 
               <Text style={styles.listItem}>{itemData.item}</Text>
             </Pressable>
             
