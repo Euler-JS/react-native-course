@@ -1,46 +1,65 @@
-
-
 //view -> container that will wrap multiple components
 //text -> to showcase any text
 //textinput -> input component
 //button -> button component
 
 import { useState } from "react";
-import { Button, StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  Button,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 
 export default function App() {
+  const [value, setValue] = useState("");
+  const [listOfNotes, setListOfNotes] = useState([]);
 
-  const [value, setValue] = useState('')
-  const [listOfNotes, setListOfNotes] = useState([ ])
-
-  function handleOnChangeText(getEnteredText){
-    setValue(getEnteredText)
+  function handleOnChangeText(getEnteredText) {
+    setValue(getEnteredText);
   }
 
-  function handleOnPressButton(){
-    setListOfNotes(currentNotes=> [...currentNotes, value])
-    console.log( listOfNotes)
+  function handleOnPressButton() {
+    setListOfNotes((currentNotes) => [...currentNotes, value]);
+    console.log(listOfNotes);
   }
 
-  return(
-    <View style={{
-      padding: 60
-    }}>
+  return (
+    <View
+      style={{
+        padding: 60,
+        paddingHorizontal: 15,
+        flex: 1
+      }}
+    >
       {/* to render input along with button */}
       <View style={styles.inputContainer}>
-        <TextInput onChangeText={handleOnChangeText} style={styles.input} placeholder="Add Your Note Here"></TextInput>
-        <Button onPress={handleOnPressButton} color={'#000'} title="Add Note"/>
+        <TextInput
+          onChangeText={handleOnChangeText}
+          style={styles.input}
+          placeholder="Add Your Note Here"
+        ></TextInput>
+        <Button onPress={handleOnPressButton} color={"#000"} title="Add Note" />
       </View>
       {/* to render input along with button */}
       {/* to tender all notes that we created */}
       <View style={styles.listContainer}>
-      <Text style={{
-        fontSize: 30,
-      }}>List of Notes</Text>
-        {
-          listOfNotes.map((item, index)=> <Text style={styles.listItem} key={`item${index}`}>{item}</Text>)
-        }
-        
+        <Text
+          style={{
+            fontSize: 30,
+          }}
+        >
+          List of Notes
+        </Text>
+        <ScrollView>
+          {listOfNotes.map((item, index) => (
+            <Text style={styles.listItem} key={`item${index}`}>
+              {item}
+            </Text>
+          ))}
+        </ScrollView>
       </View>
       {/* to render all notes that we created */}
     </View>
@@ -48,26 +67,30 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  inputContainer : {
-    flexDirection: 'row',
+  inputContainer: {
+    flexDirection: "row",
     paddingBottom: 30,
-    borderBottomWidth: 1
+    borderBottomWidth: 1,
+    flex: 1,
+    alignItems : 'center',
+    justifyContent: 'space-between' 
   },
-  input : {
+  input: {
     borderWidth: 1,
-    borderColor: '#ddd',
-    flex: 1
+    borderColor: "#ddd",
+    flex: 1,
   },
-  listContainer : {
-    paddingTop: 30
+  listContainer: {
+    paddingTop: 30,
+    flex: 3
   },
-  listItem : {
+  listItem: {
     borderRadius: 1,
-    borderColor: 'red',
-    backgroundColor: 'green' ,
+    borderColor: "red",
+    backgroundColor: "green",
     padding: 20,
     marginBottom: 20,
-    color: 'white',
-    fontSize: 20
-  }
-})
+    color: "white",
+    fontSize: 20,
+  },
+});
