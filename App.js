@@ -11,13 +11,15 @@ import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 export default function App() {
 
   const [value, setValue] = useState('')
+  const [listOfNotes, setListOfNotes] = useState([ ])
 
   function handleOnChangeText(getEnteredText){
     setValue(getEnteredText)
   }
 
   function handleOnPressButton(){
-    console.log("Inserted Text : ", value)
+    setListOfNotes(currentNotes=> [...currentNotes, value])
+    console.log( listOfNotes)
   }
 
   return(
@@ -32,7 +34,13 @@ export default function App() {
       {/* to render input along with button */}
       {/* to tender all notes that we created */}
       <View style={styles.listContainer}>
-        <Text>Show List Here</Text>
+      <Text style={{
+        fontSize: 30,
+      }}>List of Notes</Text>
+        {
+          listOfNotes.map((item, index)=> <Text style={styles.listItem} key={`item${index}`}>{item}</Text>)
+        }
+        
       </View>
       {/* to render all notes that we created */}
     </View>
@@ -52,5 +60,14 @@ const styles = StyleSheet.create({
   },
   listContainer : {
     paddingTop: 30
+  },
+  listItem : {
+    borderRadius: 1,
+    borderColor: 'red',
+    backgroundColor: 'green' ,
+    padding: 20,
+    marginBottom: 20,
+    color: 'white',
+    fontSize: 20
   }
 })
