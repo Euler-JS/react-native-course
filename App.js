@@ -6,12 +6,15 @@
 import { useState } from "react";
 import {
   Button,
+  FlatList,
   ScrollView,
   StyleSheet,
   Text,
   TextInput,
+  TouchableOpacity,
   View,
 } from "react-native";
+
 
 export default function App() {
   const [value, setValue] = useState("");
@@ -53,13 +56,12 @@ export default function App() {
         >
           List of Notes
         </Text>
-        <ScrollView>
-          {listOfNotes.map((item, index) => (
-            <Text style={styles.listItem} key={`item${index}`}>
-              {item}
-            </Text>
-          ))}
-        </ScrollView>
+        <FlatList 
+          data={listOfNotes}
+          renderItem={(itemData)=> (
+            <Text style={styles.listItem}>{itemData.item}</Text>
+          )}
+          />
       </View>
       {/* to render all notes that we created */}
     </View>
