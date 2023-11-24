@@ -7,6 +7,7 @@ import { useState } from "react";
 import {
   Button,
   FlatList,
+  Pressable,
   ScrollView,
   StyleSheet,
   Text,
@@ -27,6 +28,10 @@ export default function App() {
   function handleOnPressButton() {
     setListOfNotes((currentNotes) => [...currentNotes, value]);
     console.log(listOfNotes);
+  }
+
+  function handleRemoveItem() {
+    console.log('Item pressed Here');
   }
 
   return (
@@ -59,7 +64,10 @@ export default function App() {
         <FlatList 
           data={listOfNotes}
           renderItem={(itemData)=> (
-            <Text style={styles.listItem}>{itemData.item}</Text>
+            <Pressable onPress={handleRemoveItem}> 
+              <Text style={styles.listItem}>{itemData.item}</Text>
+            </Pressable>
+            
           )}
           />
       </View>
